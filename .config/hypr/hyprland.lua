@@ -18,7 +18,7 @@
 -- Launch tools automatically during the Hyprland initialization phase
 hl.config({
     exec_once = {
-        "dms run", -- Replace with the exact binary execution command of the script or app
+        "qs -c /etc/xdg/quickshell/noctalia-shell/", -- Replace with the exact binary execution command of the script or app
     }
 })
 hl.config({
@@ -29,7 +29,7 @@ hl.config({
 
 hl.on("hyprland.start", function()
     -- Starts the dms daemon asynchronously
-    hl.exec_cmd("dms run")
+    hl.exec_cmd("qs -c /etc/xdg/quickshell/noctalia-shell/")
 end)
 hl.on("hyprland.start", function()
     -- Starts the dms daemon asynchronously
@@ -64,10 +64,10 @@ hl.monitor({
 ---------------------
 
 -- Set programs that you use
-local terminal    = "foot"
+local terminal    = "ghostty"
 local filemanager = "thunar"
 local menu        = "rofi -show run"
-local browser     = "firefox"
+local browser     = "helium-browser"
 local chat        = "discord"
 local task        = "missioncenter"
 local gamel        = "steam"
@@ -142,11 +142,11 @@ hl.config({
     },
 
     decoration = {
-        rounding       = 0,
+        rounding       = 9,
         rounding_power = 2,
 
         -- Change transparency of focused and unfocused windows
-        active_opacity   = 0.99,
+        active_opacity   = 0.95,
         inactive_opacity = 0.85,
 
         shadow = {
@@ -159,7 +159,7 @@ hl.config({
         blur = {
             enabled   = true,
             size      = 3,
-            passes    = 1,
+            passes    = 3,
             vibrancy  = 0.1696,
         },
     },
@@ -434,4 +434,8 @@ hl.window_rule({
     float = true,
 })
 
-
+hl.window_rule({
+    name = "firefox-graceful-close",
+    match = { class = "firefox" },
+    tag = "firefox",
+})
