@@ -18,7 +18,7 @@
 -- Launch tools automatically during the Hyprland initialization phase
 hl.config({
     exec_once = {
-        "setsid dms run", -- Replace with the exact binary execution command of the script or app
+        "dms run", -- Replace with the exact binary execution command of the script or app
     }
 })
 hl.config({
@@ -65,10 +65,11 @@ hl.monitor({
 
 -- Set programs that you use
 local terminal    = "foot"
-local filemanager = "dolphin"
+local filemanager = "thunar"
 local menu        = "rofi -show run"
 local browser     = "firefox"
 local chat        = "discord"
+local task        = "missioncenter"
 -------------------
 ---- AUTOSTART ----
 -------------------
@@ -307,6 +308,8 @@ hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ action = "toggle" }))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
+hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("bash -c 'grim -g \"$(slurp)\" - | tee ~/Pictures/Screenshots/$(date +%Y-%m-%d_%H-%M-%S).png | wl-copy'"))
+hl.bind(mainMod .. " + I", hl.dsp.exec_cmd(task))
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("bash ~/.config/hypr/update-colors.sh"))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
