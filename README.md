@@ -24,7 +24,9 @@ mkdir -p ~/Pictures/Screenshots
 Whenever you change any config file run these 3 commands:
 
 git add .
+
 git commit -m "describe what you changed"
+
 git push
 
 ## Keybinds
