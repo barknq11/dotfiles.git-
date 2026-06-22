@@ -70,6 +70,7 @@ local menu        = "rofi -show run"
 local browser     = "firefox"
 local chat        = "discord"
 local task        = "missioncenter"
+local gamel        = "steam"
 -------------------
 ---- AUTOSTART ----
 -------------------
@@ -304,6 +305,8 @@ hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2
 -- Force Qt configuration engine to load dark theme context on raw execution
 
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(filemanager))
+hl.bind(mainMod .. " + G", hl.dsp.exec_cmd(gamel))
+hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(chat))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ action = "toggle" }))
@@ -404,6 +407,30 @@ hl.window_rule({
     match = { class = "hyprland-run" },
 
     move  = "20 monitor_h-120",
+    float = true,
+})
+hl.window_rule({
+    name = "fix-slurp-focus",
+    match = { class = "slurp" },
+    float = true,
+    no_focus = true,
+})
+
+hl.window_rule({
+    name = "steam-float",
+    match = { class = "steam", title = "^(?!Steam$).*" },
+    float = true,
+})
+
+hl.window_rule({
+    name = "float-dialogs",
+    match = { title = "^(Open|Save|Properties|Preferences|Settings|About|Error|Warning|Confirm|Dialog).*" },
+    float = true,
+})
+
+hl.window_rule({
+    name = "float-file-picker",
+    match = { class = "xdg-desktop-portal-gtk" },
     float = true,
 })
 
